@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Perform build steps here
-                echo "building"
+                docker build -t my_react_one .
             }
         }
         
