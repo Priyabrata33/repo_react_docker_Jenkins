@@ -1,20 +1,29 @@
-# Use an official Node.js runtime as the base image
-FROM node:18-alpine3.17
-# Set the working directory inside the container
+#get the latest alpine image from node registry
+FROM node:alpine AS build-stage
+
+#set the working directory
 WORKDIR /app
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-# Install dependencies
+
+#copy the package and package lock files
+#from local to container work directory /app
+COPY package*.json /app/
+
+#Run command npm install to install packages
 RUN npm install
 
-#multistage build for docker one
-
-#FROM node:alpine as main
-# Copy the entire project to the working directory
+#copy all the folder contents from local to container
 COPY . .
-# Build the React app
+
+#create a react production build
 RUN npm run build
-# Expose the port that the app will run on
-EXPOSE 3000
+
+#get the latest alpine image from nginx registry
+FROM nginx:alpine
+
+#we copy the output from first stage that is our react build
+#into nginx html directory where it will serve our index file
+COPY --from=build-stage /app/build/ /usr/share/nginx/html
+
+EXPOSE 80
 # Define the command to run the app
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
