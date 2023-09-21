@@ -1,25 +1,22 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Build') {
             steps {
-                // Perform build steps here
-                docker build -t my_react_one .
+                echo 'Building..'
+                docker build -t react_one_with_pipeline .
+                docker run -p 3038:80 -d react_one_with_pipeline
             }
         }
-        
         stage('Test') {
             steps {
-                // Perform test steps here
-                echo "testing"
+                echo 'Testing..'
             }
         }
-        
         stage('Deploy') {
             steps {
-                // Perform deployment steps here
-                echo "deploying"
+                echo 'Deploying....'
             }
         }
     }
