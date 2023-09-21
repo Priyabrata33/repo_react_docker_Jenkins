@@ -5,13 +5,18 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh'''
                 docker build -t react_one_with_pipeline .
-                docker run -p 3038:80 -d react_one_with_pipeline
+                '''
+                
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh'''
+                    docker run -p 3060:80 -d react_one_with_pipeline
+                '''
             }
         }
         stage('Deploy') {
