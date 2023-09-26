@@ -1,4 +1,5 @@
 # Getting Started with Create React App
+I successfully developed a React application using DevOps methodologies, implementing an automated pipeline with Dockerfile and Jenkinsfile. This enabled seamless CI/CD processes, ensuring efficient build, test, and deployment automation. I utilized Git for version control and Jenkins for CI/CD pipeline setup. Additionally, I created a Linux virtual machine on Amazon AWS EC2 to enable daily cloud-based execution of the application. By leveraging Docker, I encapsulated the entire application within containers, facilitating easy deployment across different environments.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
