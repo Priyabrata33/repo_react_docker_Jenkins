@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Deploy'){
         steps{
-            sh 'docker-sompose -f react_nginx.yaml up -d'
+            sh 'docker-compose -f react_nginx.yaml up -d'
         }
     }
   }
